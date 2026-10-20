@@ -1,0 +1,56 @@
+{
+  "$schema": "https://living-code.dev/port.schema.json",
+  "schemaVersion": 1,
+  "name": "JetBrains IDEs",
+  "slug": "jetbrains",
+  "group": "Editors",
+  "emoji": "🧠",
+  "description": "Living Code for JetBrains IDEs. Repository-owned theme files, installation instructions and four color flavors.",
+  "homepage": "https://www.jetbrains.com/ides/",
+  "quick": "See installation instructions",
+  "aliases": [
+    "jetbrains"
+  ],
+  "flavors": [
+    "night",
+    "frost",
+    "paper",
+    "signal"
+  ],
+  "files": [
+    "META-INF/plugin.xml",
+    "META-INF/pluginIcon.svg",
+    "META-INF/pluginIcon_dark.svg",
+    "OFL-JetBrainsMono.txt",
+    "themes/living-code-frost.theme.json",
+    "themes/living-code-frost.xml",
+    "themes/living-code-night.theme.json",
+    "themes/living-code-night.xml",
+    "themes/living-code-paper.theme.json",
+    "themes/living-code-paper.xml",
+    "themes/living-code-signal.theme.json",
+    "themes/living-code-signal.xml"
+  ],
+  "images": [
+    {
+      "flavor": "night",
+      "path": "images/night.png",
+      "alt": "JetBrains IDEs running Living Code Night"
+    },
+    {
+      "flavor": "frost",
+      "path": "images/frost.png",
+      "alt": "JetBrains IDEs running Living Code Frost"
+    },
+    {
+      "flavor": "paper",
+      "path": "images/paper.png",
+      "alt": "JetBrains IDEs running Living Code Paper"
+    },
+    {
+      "flavor": "signal",
+      "path": "images/signal.png",
+      "alt": "JetBrains IDEs running Living Code Signal"
+    }
+  ]
+}

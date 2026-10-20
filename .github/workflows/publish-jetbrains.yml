@@ -1,0 +1,61 @@
+name: publish-jetbrains
+
+# Manual only. Nothing here runs on push, tag or release.
+#
+# FIRST UPLOAD MUST BE MANUAL. JetBrains Marketplace does not let the upload API create a plugin: the first version
+# has to be submitted by hand at https://plugins.jetbrains.com/plugin/add (it then goes through JetBrains review).
+# Only once the plugin exists, with id dev.livingcode.theme, can this workflow upload further versions.
+#   https://plugins.jetbrains.com/docs/intellij/publishing-plugin.html
+#   https://plugins.jetbrains.com/docs/marketplace/uploading-a-new-plugin.html
+#
+# Token: create a permanent token on the Tokens tab of your JetBrains Marketplace profile
+# (https://plugins.jetbrains.com/author/me/tokens) and store it as the repository secret JETBRAINS_MARKETPLACE_TOKEN.
+# Upload API: https://plugins.jetbrains.com/docs/marketplace/plugin-upload.html
+#
+# Marketplace rejects a version it has already seen, so bump "version" in package.json before running this.
+on:
+  workflow_dispatch:
+    inputs:
+      channel:
+        description: Release channel. Leave empty for the default Stable channel.
+        required: false
+        default: ""
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      JETBRAINS_MARKETPLACE_TOKEN: ${{ secrets.JETBRAINS_MARKETPLACE_TOKEN }}
+      CHANNEL: ${{ inputs.channel }}
+    steps:
+      # First, so a missing secret fails the run before anything is built.
+      - name: Require JETBRAINS_MARKETPLACE_TOKEN
+        run: |
+          if [ -z "$JETBRAINS_MARKETPLACE_TOKEN" ]; then
+            echo "::error title=Missing secret::The repository secret JETBRAINS_MARKETPLACE_TOKEN is not set. Create a permanent token at https://plugins.jetbrains.com/author/me/tokens and add it under Settings > Secrets and variables > Actions. Also note that the first upload of a plugin must be done manually: https://plugins.jetbrains.com/docs/intellij/publishing-plugin.html"
+            exit 1
+          fi
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 24 }
+      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v4
+      - name: Check port-owned files
+        run: pnpm run check
+      - name: Build the plugin zip
+        run: pnpm run package:jetbrains
+      - name: Upload to JetBrains Marketplace
+        run: |
+          set -euo pipefail
+          zip="$(ls dist/living-code-jetbrains-*.zip)"
+          echo "Uploading $zip"
+          curl --fail-with-body --silent --show-error --include \
+            --header "Authorization: Bearer ${JETBRAINS_MARKETPLACE_TOKEN}" \
+            -F xmlId=dev.livingcode.theme \
+            -F "file=@${zip}" \
+            -F "channel=${CHANNEL}" \
+            https://plugins.jetbrains.com/api/updates/upload

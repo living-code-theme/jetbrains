@@ -1,0 +1,49 @@
+<!-- Living Code theme. Maintained in this repository. -->
+<idea-plugin>
+  <id>dev.livingcode.theme</id>
+  <name>Living Code</name>
+  <version>0.1.1</version>
+  <vendor url="https://living-code.dev">Living Code</vendor>
+
+  <!-- 2024.1 and newer, no upper bound. See SINCE_BUILD in scripts/ports/jetbrains.mjs. -->
+  <idea-version since-build="241"/>
+
+  <!-- Themes need nothing from any specific IDE, so one plugin covers IntelliJ IDEA, PyCharm, WebStorm, GoLand,
+       Rider, CLion, RubyMine, PhpStorm, DataGrip and Android Studio. -->
+  <depends>com.intellij.modules.platform</depends>
+
+  <description><![CDATA[
+      Living Code theme for JetBrains IDEs. Calm slate. Living color.
+      Dark and light interface themes with matching editor color schemes.
+      <p>
+        It is built on a perceptually uniform OKLCH palette, so every syntax color keeps the same weight and
+        every flavor keeps WCAG AA contrast. It works in IntelliJ IDEA, PyCharm, WebStorm, GoLand, Rider, CLion,
+        RubyMine, PhpStorm, DataGrip and Android Studio.
+      </p>
+      <p>Four themes are included:</p>
+      <ul>
+        <li><b>Living Code Night</b>: The default. Dark slate ground, teal structure, green strings and gray comments. Amber warnings and copper numbers keep their warm contrast.</li>
+        <li><b>Living Code Frost</b>: Night on a lifted, bluer slate with a third less chroma. Calmer for long sessions; the warm/cool split survives at low saturation.</li>
+        <li><b>Living Code Paper</b>: Daylight. Same two temperatures on near-white slate, lightness inverted so every syntax color keeps WCAG AA contrast.</li>
+        <li><b>Living Code Signal</b>: A minimal variant of Night with a single accent. Teal marks keywords, tags and focus; everything else stays on the slate ramp. No warm literals or multicolor diagnostics.</li>
+      </ul>
+      <p><img src="https://raw.githubusercontent.com/living-code-theme/jetbrains/main/images/night.png" alt="Living Code Night in a JetBrains IDE" width="640"></p>
+      <p><img src="https://raw.githubusercontent.com/living-code-theme/jetbrains/main/images/frost.png" alt="Living Code Frost in a JetBrains IDE" width="640"></p>
+      <p><img src="https://raw.githubusercontent.com/living-code-theme/jetbrains/main/images/paper.png" alt="Living Code Paper in a JetBrains IDE" width="640"></p>
+      <p><img src="https://raw.githubusercontent.com/living-code-theme/jetbrains/main/images/signal.png" alt="Living Code Signal in a JetBrains IDE" width="640"></p>
+      <p>
+        After installing, pick a theme in <em>Settings | Appearance &amp; Behavior | Appearance | Theme</em>.
+        The matching editor color scheme is applied together with it.
+      </p>
+      <p>
+        Source and issues: <a href="https://github.com/living-code-theme/jetbrains">https://github.com/living-code-theme/jetbrains</a>
+      </p>
+  ]]></description>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <themeProvider id="0b9c291f-7d16-4216-8330-a128678fa9af" path="/themes/living-code-night.theme.json"/>
+    <themeProvider id="f7a4cb52-6dfe-4909-999f-dfdd86473a16" path="/themes/living-code-frost.theme.json"/>
+    <themeProvider id="7c3ace7c-0309-4a55-9691-e91cb75e86f3" path="/themes/living-code-paper.theme.json"/>
+    <themeProvider id="2744e98f-df0b-4a9c-8708-9085fc4ef669" path="/themes/living-code-signal.theme.json"/>
+  </extensions>
+</idea-plugin>
