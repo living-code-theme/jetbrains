@@ -2,7 +2,7 @@
 <idea-plugin>
   <id>dev.livingcode.theme</id>
   <name>Living Code</name>
-  <version>0.1.1</version>
+  <version>0.1.2</version>
   <vendor url="https://living-code.dev">Living Code</vendor>
 
   <!-- Compatibility baseline: 2024.1 and newer, no upper bound. Maintained here with README.md. -->
@@ -27,10 +27,6 @@
         <li><b>Living Code Paper</b>: Daylight. Same two temperatures on near-white slate, lightness inverted so every syntax color keeps WCAG AA contrast.</li>
         <li><b>Living Code Signal</b>: A minimal variant of Night with a single accent. Teal marks keywords, tags and focus; everything else stays on the slate ramp. No warm literals or multicolor diagnostics.</li>
       </ul>
-      <p><img src="https://raw.githubusercontent.com/living-code-theme/jetbrains/main/images/night.png" alt="Living Code Night in a JetBrains IDE" width="640"></p>
-      <p><img src="https://raw.githubusercontent.com/living-code-theme/jetbrains/main/images/frost.png" alt="Living Code Frost in a JetBrains IDE" width="640"></p>
-      <p><img src="https://raw.githubusercontent.com/living-code-theme/jetbrains/main/images/paper.png" alt="Living Code Paper in a JetBrains IDE" width="640"></p>
-      <p><img src="https://raw.githubusercontent.com/living-code-theme/jetbrains/main/images/signal.png" alt="Living Code Signal in a JetBrains IDE" width="640"></p>
       <p>
         After installing, pick a theme in <em>Settings | Appearance &amp; Behavior | Appearance | Theme</em>.
         The matching editor color scheme is applied together with it.

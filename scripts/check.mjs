@@ -2,6 +2,7 @@
 // Port-owned, dependency-free checks. Landing discovery performs its own full schema/README/image validation.
 import assert from "node:assert/strict";
 import { generatePort } from "./generate.mjs";
+import { checkIcons } from "./icons.mjs";
 import { readFile, realpath, stat } from "node:fs/promises";
 import { isAbsolute, join, relative, resolve, sep } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
@@ -22,6 +23,7 @@ export async function check(directory = root) {
   };
   const manifest = JSON.parse(await read("port.json", 32 * 1024));
   const pkg = JSON.parse(await read("package.json"));
+  await checkIcons(read);
   assert.equal(manifest.schemaVersion, 1);
   assert.ok(manifest.name && manifest.group && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(manifest.slug));
   assert.ok(manifest.flavors.length && new Set(manifest.flavors).size === manifest.flavors.length && manifest.flavors.every((id) => order.includes(id)));
@@ -67,6 +69,7 @@ export async function check(directory = root) {
   if (pkg.livingCode.kind === "jetbrains") {
     const xml = (await read("META-INF/plugin.xml")).toString("utf8");
     assert.ok(xml.includes(`<version>${pkg.version}</version>`), "Keep package.json and plugin.xml versions in sync");
+    assert.doesNotMatch(xml, /<img\b|<picture\b|!\[[^\r\n]*\]\(/i, "Upload screenshots to the Marketplace gallery, not the plugin description");
     const id = xml.match(/<id>([^<]+)<\/id>/)?.[1];
     assert.equal(id, "dev.livingcode.theme", "Keep the JetBrains plugin identity under Living Code");
     const workflow = (await read(".github/workflows/publish-jetbrains.yml")).toString("utf8");

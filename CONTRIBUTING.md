@@ -24,6 +24,12 @@ pnpm test
 README, metadata, marketplace identities, licenses, icons, screenshots, handwritten runtime files and publishing
 workflows are not generated. Packaging uses committed files and refuses stale generated themes; it does not rebuild.
 
+Marketplace icons draw the current `[lc]` lettermark. `node scripts/icons.mjs` checks their SVG outlines and
+reviewed hashes; use `node scripts/icons.mjs --write` only after an intentional asset edit, then visually review
+the icons and `scripts/icon-sources.json`. The checks run during normal checks/packaging; releases never refresh
+artwork. Keep screenshots out of `META-INF/plugin.xml`'s description: upload `images/*.png` separately to the
+JetBrains Marketplace gallery.
+
 ## Adopt a palette update explicitly
 
 In a reviewed [core](https://github.com/living-code-theme/core) checkout, run `pnpm build`, `pnpm check` and

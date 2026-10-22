@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "icons": [
+    {
+      "source": "META-INF/pluginIcon.svg",
+      "sha256": "842289504741c000d98e718e17241f75544d25a08eb62abfb3e067a1cf629bd9",
+      "outputs": []
+    },
+    {
+      "source": "META-INF/pluginIcon_dark.svg",
+      "sha256": "842289504741c000d98e718e17241f75544d25a08eb62abfb3e067a1cf629bd9",
+      "outputs": []
+    }
+  ]
+}

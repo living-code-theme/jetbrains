@@ -1,6 +1,6 @@
 {
   "name": "living-code-jetbrains",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Living Code for JetBrains IDEs. Repository-owned theme files, installation instructions and four color flavors.",
   "type": "module",
   "license": "MIT",
