@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "artifacts": ["living-code-jetbrains-{version}.zip"],
+  "channels": [
+    { "name": "JetBrains Marketplace", "url": "https://plugins.jetbrains.com/plugin/add", "instructions": "First upload is manual: submit the ZIP as plugin dev.livingcode.theme, vendor Living Code. Check for pending submissions under the old account first. After approval, bump the version and use this port's manual publish-jetbrains workflow for updates. The ZIP contains the plugin JAR; do not upload an arbitrary source archive." }
+  ]
+}
